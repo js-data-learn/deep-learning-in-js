@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis@latest">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest">
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div id="plot1"></div>
+            </div>
+            <div class="col-md-4">
+                <div id="plot2"></div>
+            </div>
+            <div class="col-md-4">
+                <div id="plot4"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div id="plot5"></div>
+            </div>
+            <div class="col-md-4">
+                <div id="plot6"></div>
+            </div>
+            <div class="col-md-4">
+                <div id="plot7"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let values = [{ x: 1, y: 20 }, { x: 2, y: 30 },
+        { x: 3, y: 5 }, { x: 4, y: 12 }];
+        tfvis.render.linechart(document.getElementById('plot1'), { values }, { width: 400 });
+        values = [
+            [{ x: 1, y: 20 }, { x: 2, y: 30 }, { x: 3, y: 5 }, { x: 4, y: 12 }], [{ x: 1, y: 40 }, { x: 2, y: 0 }, { x: 3, y: 50 }, { x: 4, y: -5 }]
+        ];
+        let series = ['My series 1', 'My series 2']; tfvis.render.linechart(
+            document.getElementById('plot2'), { values, series }, {
+            width: 400,
+            xLabel: 'My x-axis label',
+            yLabel: 'My y-axis label'
+        });
+        values = [
+            [{ x: 20, y: 40 }, { x: 32, y: 0 }, { x: 5, y: 52 }, { x: 12, y: -6 }], [{ x: 15, y: 35 }, { x: 0, y: 9 }, { x: 7, y: 28 }, { x: 16, y: 8 }]
+        ];
+        series = ['My scatter series 1', 'My scatter series 2'];
+        tfvis.render.scatterplot(document.getElementById('plot4'),
+            { values, series },
+            {
+                width: 400,
+                xLabel: 'My x-values', yLabel: 'My y-values'
+            });
+        const data = [
+            { index: 'foo', value: 1 }, { index: 'bar', value: 7 },
+            { index: 3, value: 3 },
+            { index: 5, value: 6 }];
+        tfvis.render.barchart(document.getElementById('plot5'), data, {
+            yLabel: 'My value',
+            width: 400
+        });
+
+        const data1 = [1, 5, 5, 5, 5, 10, -3, -3]; 
+        tfvis.render.histogram(document.getElementById('plot6'), data1, {
+            width: 400
+        });
+        tfvis.render.histogram(document.getElementById('plot7'), data1, {
+            maxBins: 3,
+            width: 400
+        });
+    </script>
+</body>
+
+</html>
