@@ -1,4 +1,4 @@
-tfjs-examples
-tfjs-models
-dtwl-folder
+node_modules
+dist*
+.cache
 .vscode
